@@ -14,13 +14,20 @@ public class CustomerTest {
 
     private Customer customer;
 
-    private static final long CUST_ID = 1;
+    private static final long TEST_CUST_ID = 1;
+    private static final String TEST_GIVEN_NAME = "Test Given Name";
     @Before
     public void setup(){
-        customer = new Customer(CUST_ID);
+        customer = new Customer(TEST_CUST_ID);
     }
     @Test
     public void customerMustHaveACustomerId(){
-        Assert.assertEquals(CUST_ID,customer.getId());
+        Assert.assertEquals(TEST_CUST_ID,customer.getId());
+    }
+
+    @Test
+    public void customerCanHaveAGivenName(){
+        customer.setGivenName(TEST_GIVEN_NAME);
+        Assert.assertEquals(TEST_GIVEN_NAME,customer.getGivenName());
     }
 }
