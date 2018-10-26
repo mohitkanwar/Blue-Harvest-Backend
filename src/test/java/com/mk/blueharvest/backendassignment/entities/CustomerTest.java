@@ -16,6 +16,7 @@ public class CustomerTest {
 
     private static final long TEST_CUST_ID = 1;
     private static final String TEST_GIVEN_NAME = "Test Given Name";
+    private static final String TEST_SURNAME = "Test Sur Name";
     @Before
     public void setup(){
         customer = new Customer(TEST_CUST_ID);
@@ -29,5 +30,10 @@ public class CustomerTest {
     public void customerCanHaveAGivenName(){
         customer.setGivenName(TEST_GIVEN_NAME);
         Assert.assertEquals(TEST_GIVEN_NAME,customer.getGivenName());
+    }
+    @Test
+    public void customerCanHaveASurname(){
+        customer.setSurname(TEST_SURNAME);
+        Assert.assertEquals(TEST_SURNAME,customer.getSurname());
     }
 }
