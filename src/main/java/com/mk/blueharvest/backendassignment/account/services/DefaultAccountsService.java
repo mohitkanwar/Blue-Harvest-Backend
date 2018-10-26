@@ -1,4 +1,7 @@
 package com.mk.blueharvest.backendassignment.account.services;
 
-public class DefaultAccountsService {
+import org.springframework.stereotype.Service;
+
+@Service
+public class DefaultAccountsService implements AccountsService {
 }
