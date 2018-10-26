@@ -1,7 +1,7 @@
-package com.mk.blueharvest.backendassignment.services;
+package com.mk.blueharvest.backendassignment.customer.services;
 
-import com.mk.blueharvest.backendassignment.entities.Customer;
-import com.mk.blueharvest.backendassignment.repositories.CustomerRepository;
+import com.mk.blueharvest.backendassignment.customer.entities.Customer;
+import com.mk.blueharvest.backendassignment.customer.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

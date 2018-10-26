@@ -1,4 +1,4 @@
-package com.mk.blueharvest.backendassignment.entities;
+package com.mk.blueharvest.backendassignment.customer.entities;
 
 import org.junit.Assert;
 import org.junit.Before;

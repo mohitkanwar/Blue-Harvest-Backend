@@ -1,6 +1,6 @@
-package com.mk.blueharvest.backendassignment.services;
+package com.mk.blueharvest.backendassignment.customer.services;
 
-import com.mk.blueharvest.backendassignment.entities.Customer;
+import com.mk.blueharvest.backendassignment.customer.entities.Customer;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
-package com.mk.blueharvest.backendassignment.services;
+package com.mk.blueharvest.backendassignment.customer.services;
 
-import com.mk.blueharvest.backendassignment.entities.Customer;
+import com.mk.blueharvest.backendassignment.customer.entities.Customer;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

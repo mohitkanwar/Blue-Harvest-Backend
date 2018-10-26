@@ -1,4 +1,4 @@
-package com.mk.blueharvest.backendassignment.entities;
+package com.mk.blueharvest.backendassignment.customer.entities;
 
 import javax.persistence.*;
 import java.util.Objects;
