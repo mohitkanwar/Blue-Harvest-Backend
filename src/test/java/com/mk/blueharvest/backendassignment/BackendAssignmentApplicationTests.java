@@ -1,5 +1,6 @@
 package com.mk.blueharvest.backendassignment;
 
+import com.mk.blueharvest.backendassignment.entities.CustomerTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
