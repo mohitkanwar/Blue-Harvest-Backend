@@ -30,6 +30,7 @@
     * Account Id
     * Account Type
     * Ordered Collection of Transactions
+    * Balance
  * Transaction
     * Transaction Id
     * Transaction Type
