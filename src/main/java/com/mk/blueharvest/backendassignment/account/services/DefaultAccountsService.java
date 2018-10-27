@@ -13,8 +13,8 @@ public class DefaultAccountsService implements AccountsService {
     @Autowired
     private AccountRepository accountRepository;
     @Override
-    public void save(Account account) {
-        accountRepository.save(account);
+    public Account save(Account account) {
+        return accountRepository.save(account);
     }
 
     @Override

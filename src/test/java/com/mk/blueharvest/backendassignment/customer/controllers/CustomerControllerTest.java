@@ -1,9 +1,9 @@
-package com.mk.blueharvest.backendassignment.customer;
+package com.mk.blueharvest.backendassignment.customer.controllers;
 
+import com.mk.blueharvest.backendassignment.customer.controllers.CustomerController;
 import com.mk.blueharvest.backendassignment.customer.dto.CustomerDTO;
 import com.mk.blueharvest.backendassignment.customer.entities.Customer;
 import com.mk.blueharvest.backendassignment.customer.services.CustomerService;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -3,6 +3,7 @@ package com.mk.blueharvest.backendassignment.customer.entities;
 import com.mk.blueharvest.backendassignment.account.entities.Account;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,7 +15,7 @@ import java.util.Objects;
 public class Customer {
     @Id
     @Column(name = "ID")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "GIVEN_NAME")
@@ -66,6 +67,9 @@ public class Customer {
     }
 
     public List<Account> getAccounts() {
+        if(accounts==null){
+            accounts = new ArrayList<>();
+        }
         return accounts;
     }
 

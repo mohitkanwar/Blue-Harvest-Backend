@@ -1,4 +1,4 @@
-package com.mk.blueharvest.backendassignment.customer;
+package com.mk.blueharvest.backendassignment.customer.controllers;
 
 import com.mk.blueharvest.backendassignment.account.dto.AccountsDTO;
 import com.mk.blueharvest.backendassignment.customer.dto.CustomerDTO;
@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController("customer")
+@RestController("/customer")
 public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
-    @GetMapping("list")
+    @GetMapping("/list")
     public List<CustomerDTO> getCustomersList() {
         List<CustomerDTO> response = new ArrayList<>();
         List<Customer> customers = customerService.getAllCustomers();
