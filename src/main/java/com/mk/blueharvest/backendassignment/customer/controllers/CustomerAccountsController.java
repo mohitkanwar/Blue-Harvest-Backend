@@ -2,6 +2,7 @@ package com.mk.blueharvest.backendassignment.customer.controllers;
 
 import com.mk.blueharvest.backendassignment.account.entities.Account;
 import com.mk.blueharvest.backendassignment.account.services.AccountsService;
+import com.mk.blueharvest.backendassignment.account.services.TransactionService;
 import com.mk.blueharvest.backendassignment.account.util.AccountType;
 import com.mk.blueharvest.backendassignment.customer.entities.Customer;
 import com.mk.blueharvest.backendassignment.customer.services.CustomerService;
@@ -19,8 +20,10 @@ public class CustomerAccountsController {
     private CustomerService customerService;
     @Autowired
     private AccountsService accountsService;
+    @Autowired
+    private TransactionService transactionService;
     @PostMapping("/current")
-    public StatusResponse createCurrentAccount(long customerId, double initialCredit) {
+    public String createCurrentAccount(long customerId, double initialCredit) {
         StatusResponse statusResponse = StatusResponse.FAILURE;
         Optional<Customer> customer = customerService.getCustomerById(customerId);
         try{
@@ -32,6 +35,9 @@ public class CustomerAccountsController {
                 List<Account> accountList = customer1.getAccounts();
                 accountList.add(account);
                 customerService.save(customer1);
+                if(initialCredit!=0){
+                    transactionService.saveTransaction(account,initialCredit);
+                }
                 statusResponse=StatusResponse.SUCCESS;
             }
 
@@ -39,6 +45,6 @@ public class CustomerAccountsController {
             e.printStackTrace();
         }
 
-        return statusResponse;
+        return statusResponse.toString();
     }
 }

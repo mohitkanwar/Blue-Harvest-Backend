@@ -34,7 +34,6 @@
  * Transaction
     * Transaction Id
     * Transaction Type
-    * Associated Account
     * Transaction Amount
     
  ### Data Transfer Objects
