@@ -1,6 +1,9 @@
 package com.mk.blueharvest.backendassignment.customer.entities;
 
+import com.mk.blueharvest.backendassignment.account.entities.Account;
+
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -18,10 +21,17 @@ public class Customer {
     private String givenName;
     @Column(name = "SURNAME")
     private String surname;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "CUSTOMER_ACCOUNTS",
+            joinColumns = {@JoinColumn(name = "CUSTOMER_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "ACCOUNT_ID")}
+    )
+    private List<Account> accounts;
+
     public long getId() {
         return id;
     }
-
     public void setId(long id) {
         this.id = id;
     }
@@ -53,5 +63,13 @@ public class Customer {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
     }
 }
