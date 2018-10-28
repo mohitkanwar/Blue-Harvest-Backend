@@ -22,12 +22,13 @@ public class CustomerAccountsController {
     private AccountsService accountsService;
     @Autowired
     private TransactionService transactionService;
+
     @PostMapping("/current")
     public String createCurrentAccount(long customerId, double initialCredit) {
         StatusResponse statusResponse = StatusResponse.FAILURE;
         Optional<Customer> customer = customerService.getCustomerById(customerId);
-        try{
-            if(customer.isPresent()){
+        try {
+            if (customer.isPresent()) {
                 Customer customer1 = customer.get();
                 Account account = new Account();
                 account.setAccountType(AccountType.CURRENT);
@@ -35,13 +36,13 @@ public class CustomerAccountsController {
                 List<Account> accountList = customer1.getAccounts();
                 accountList.add(account);
                 customerService.save(customer1);
-                if(initialCredit!=0){
-                    transactionService.saveTransaction(account,initialCredit);
+                if (initialCredit != 0) {
+                    transactionService.saveTransaction(account, initialCredit);
                 }
-                statusResponse=StatusResponse.SUCCESS;
+                statusResponse = StatusResponse.SUCCESS;
             }
 
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             e.printStackTrace();
         }
 
