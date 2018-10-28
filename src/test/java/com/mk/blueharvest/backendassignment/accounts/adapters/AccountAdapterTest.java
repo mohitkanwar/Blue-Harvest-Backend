@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -25,7 +26,6 @@ public class AccountAdapterTest {
         account.setBalance(200.40);
         account.setAccountType(AccountType.CURRENT);
         account.setId(32);
-        account.setTransactions(new ArrayList<>());
         AccountDTO dto = accountAdapter.getAccountsDTO(account);
         assertEquals(AccountType.CURRENT, dto.getAccountType());
         assertEquals(200.40, dto.getBalance(), 0);
@@ -39,12 +39,17 @@ public class AccountAdapterTest {
         account.setBalance(200.40);
         account.setAccountType(AccountType.CURRENT);
         account.setId(32);
-        account.setTransactions(new ArrayList<>());
         Account entity = accountAdapter.getAccountsEntity(account);
         assertEquals(AccountType.CURRENT, entity.getAccountType());
         assertEquals(200.40, entity.getBalance(), 0);
         assertEquals(32, entity.getId());
         assertEquals(new ArrayList<>(), entity.getTransactions());
+    }
+
+    @Test
+    public void testNullInputs(){
+        assertNull(accountAdapter.getAccountsDTO(null));
+        assertNull(accountAdapter.getAccountsEntity(null));
     }
 
 }

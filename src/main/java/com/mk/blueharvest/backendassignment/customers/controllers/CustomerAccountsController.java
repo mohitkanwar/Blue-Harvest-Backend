@@ -26,7 +26,6 @@ public class CustomerAccountsController {
     public String createCurrentAccount(long customerId, double initialCredit) {
         StatusResponse statusResponse = StatusResponse.FAILURE;
         Optional<CustomerDTO> customer = customerService.getCustomerById(customerId);
-        try {
             if (customer.isPresent()) {
                 CustomerDTO customer1 = customer.get();
                 AccountDTO account = new AccountDTO();
@@ -37,11 +36,6 @@ public class CustomerAccountsController {
                 }
                 statusResponse = StatusResponse.SUCCESS;
             }
-
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-        }
-
         return statusResponse.toString();
     }
 }

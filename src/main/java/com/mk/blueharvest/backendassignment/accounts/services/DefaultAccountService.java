@@ -38,13 +38,5 @@ public class DefaultAccountService implements AccountService {
         return accountAdapter.getAccountsDTO(account);
     }
 
-    @Override
-    public List<AccountDTO> getAllAccountsForCustomer(CustomerDTO customerDTO) {
-        List<AccountDTO> accounts = new ArrayList<>();
-        accountRepository.findAll().forEach(account -> {
-            accounts.add(accountAdapter.getAccountsDTO(account));
-        });
-        return accounts;
-    }
 
 }
