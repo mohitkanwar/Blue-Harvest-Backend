@@ -22,8 +22,9 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                 .paths(regex("/.*"))
                 .build();
     }
+
     @Override
-    protected void addResourceHandlers(ResourceHandlerRegistry resourceHandlerRegistry){
+    protected void addResourceHandlers(ResourceHandlerRegistry resourceHandlerRegistry) {
         resourceHandlerRegistry.addResourceHandler("swagger-ui.html")
                 .addResourceLocations("classpath:/META-INF/resources/");
         resourceHandlerRegistry.addResourceHandler("/webjars/**")
