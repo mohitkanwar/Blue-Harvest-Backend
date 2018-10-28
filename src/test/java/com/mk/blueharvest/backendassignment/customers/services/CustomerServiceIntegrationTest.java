@@ -1,6 +1,6 @@
 package com.mk.blueharvest.backendassignment.customers.services;
 
-import com.mk.blueharvest.backendassignment.accounts.dtos.AccountsDTO;
+import com.mk.blueharvest.backendassignment.accounts.dtos.AccountDTO;
 import com.mk.blueharvest.backendassignment.accounts.utils.AccountType;
 import com.mk.blueharvest.backendassignment.customers.dtos.CustomerDTO;
 import org.junit.Assert;
@@ -24,10 +24,10 @@ public class CustomerServiceIntegrationTest {
         CustomerDTO customer = new CustomerDTO();
         customer.setGivenName("CustName");
         customer.setSurname("surname");
-        AccountsDTO account = new AccountsDTO();
+        AccountDTO account = new AccountDTO();
         account.setAccountType(AccountType.CURRENT);
         account.setBalance(200);
-        List<AccountsDTO> accounts = new ArrayList<>(1);
+        List<AccountDTO> accounts = new ArrayList<>(1);
         accounts.add(account);
         customer.setAccounts(accounts);
         CustomerDTO customerDTOFromDB = customerService.save(customer);

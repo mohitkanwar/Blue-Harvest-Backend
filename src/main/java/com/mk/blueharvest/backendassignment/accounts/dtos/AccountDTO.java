@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class AccountsDTO {
+public class AccountDTO {
     private long id;
     private AccountType accountType;
     private double balance;

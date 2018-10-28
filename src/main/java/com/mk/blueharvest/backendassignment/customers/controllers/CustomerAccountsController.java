@@ -1,7 +1,7 @@
 package com.mk.blueharvest.backendassignment.customers.controllers;
 
-import com.mk.blueharvest.backendassignment.accounts.dtos.AccountsDTO;
-import com.mk.blueharvest.backendassignment.accounts.services.AccountsService;
+import com.mk.blueharvest.backendassignment.accounts.dtos.AccountDTO;
+import com.mk.blueharvest.backendassignment.accounts.services.AccountService;
 import com.mk.blueharvest.backendassignment.accounts.services.TransactionService;
 import com.mk.blueharvest.backendassignment.accounts.utils.AccountType;
 import com.mk.blueharvest.backendassignment.customers.dtos.CustomerDTO;
@@ -18,7 +18,7 @@ public class CustomerAccountsController {
     @Autowired
     private CustomerService customerService;
     @Autowired
-    private AccountsService accountsService;
+    private AccountService accountService;
     @Autowired
     private TransactionService transactionService;
 
@@ -29,9 +29,9 @@ public class CustomerAccountsController {
         try {
             if (customer.isPresent()) {
                 CustomerDTO customer1 = customer.get();
-                AccountsDTO account = new AccountsDTO();
+                AccountDTO account = new AccountDTO();
                 account.setAccountType(AccountType.CURRENT);
-                account = accountsService.addAccountToCustomer(customer1, account);
+                account = accountService.addAccountToCustomer(customer1, account);
                 if (initialCredit != 0) {
                     transactionService.saveTransaction(account, initialCredit);
                 }

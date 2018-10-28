@@ -1,6 +1,6 @@
 package com.mk.blueharvest.backendassignment.accounts.adapters;
 
-import com.mk.blueharvest.backendassignment.accounts.dtos.AccountsDTO;
+import com.mk.blueharvest.backendassignment.accounts.dtos.AccountDTO;
 import com.mk.blueharvest.backendassignment.accounts.entities.Account;
 import com.mk.blueharvest.backendassignment.accounts.utils.AccountType;
 import org.junit.Test;
@@ -26,7 +26,7 @@ public class AccountAdapterTest {
         account.setAccountType(AccountType.CURRENT);
         account.setId(32);
         account.setTransactions(new ArrayList<>());
-        AccountsDTO dto = accountAdapter.getAccountsDTO(account);
+        AccountDTO dto = accountAdapter.getAccountsDTO(account);
         assertEquals(AccountType.CURRENT, dto.getAccountType());
         assertEquals(200.40, dto.getBalance(), 0);
         assertEquals(32, dto.getId());
@@ -35,7 +35,7 @@ public class AccountAdapterTest {
 
     @Test
     public void shouldReturnCorrectEntity() {
-        AccountsDTO account = new AccountsDTO();
+        AccountDTO account = new AccountDTO();
         account.setBalance(200.40);
         account.setAccountType(AccountType.CURRENT);
         account.setId(32);

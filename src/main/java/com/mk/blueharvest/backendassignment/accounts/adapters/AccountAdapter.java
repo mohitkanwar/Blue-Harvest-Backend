@@ -1,6 +1,6 @@
 package com.mk.blueharvest.backendassignment.accounts.adapters;
 
-import com.mk.blueharvest.backendassignment.accounts.dtos.AccountsDTO;
+import com.mk.blueharvest.backendassignment.accounts.dtos.AccountDTO;
 import com.mk.blueharvest.backendassignment.accounts.dtos.TransactionDTO;
 import com.mk.blueharvest.backendassignment.accounts.entities.Account;
 import com.mk.blueharvest.backendassignment.accounts.entities.Transaction;
@@ -19,23 +19,23 @@ public class AccountAdapter {
         this.transactionAdapter = transactionAdapter;
     }
 
-    public AccountsDTO getAccountsDTO(Account account) {
+    public AccountDTO getAccountsDTO(Account account) {
         if (account == null) {
             return null;
         }
-        AccountsDTO accountsDTO = new AccountsDTO();
-        accountsDTO.setAccountType(account.getAccountType());
-        accountsDTO.setBalance(account.getBalance());
-        accountsDTO.setId(account.getId());
+        AccountDTO accountDTO = new AccountDTO();
+        accountDTO.setAccountType(account.getAccountType());
+        accountDTO.setBalance(account.getBalance());
+        accountDTO.setId(account.getId());
         List<TransactionDTO> transactionDTOList =
                 account.getTransactions().stream().map
                         (transactionAdapter::getTransactionDTO)
                         .collect(Collectors.toList());
-        accountsDTO.setTransactions(transactionDTOList);
-        return accountsDTO;
+        accountDTO.setTransactions(transactionDTOList);
+        return accountDTO;
     }
 
-    public Account getAccountsEntity(AccountsDTO accountDTO) {
+    public Account getAccountsEntity(AccountDTO accountDTO) {
         if (accountDTO == null) {
             return null;
         }

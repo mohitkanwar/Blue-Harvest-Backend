@@ -1,7 +1,7 @@
 package com.mk.blueharvest.backendassignment.customers.adapters;
 
 import com.mk.blueharvest.backendassignment.accounts.adapters.AccountAdapter;
-import com.mk.blueharvest.backendassignment.accounts.dtos.AccountsDTO;
+import com.mk.blueharvest.backendassignment.accounts.dtos.AccountDTO;
 import com.mk.blueharvest.backendassignment.accounts.entities.Account;
 import com.mk.blueharvest.backendassignment.customers.dtos.CustomerDTO;
 import com.mk.blueharvest.backendassignment.customers.entities.Customer;
@@ -28,11 +28,11 @@ public class CustomerAdapter {
         dto.setCustomerId(customer.getId());
         dto.setGivenName(customer.getGivenName());
         dto.setSurname(customer.getSurname());
-        List<AccountsDTO> accountsDTOS = customer.getAccounts()
+        List<AccountDTO> accountDTOS = customer.getAccounts()
                 .stream()
                 .map(accountAdapter::getAccountsDTO)
                 .collect(Collectors.toList());
-        dto.setAccounts(accountsDTOS);
+        dto.setAccounts(accountDTOS);
         return dto;
     }
 

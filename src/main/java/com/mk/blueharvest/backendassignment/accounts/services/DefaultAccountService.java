@@ -1,7 +1,7 @@
 package com.mk.blueharvest.backendassignment.accounts.services;
 
 import com.mk.blueharvest.backendassignment.accounts.adapters.AccountAdapter;
-import com.mk.blueharvest.backendassignment.accounts.dtos.AccountsDTO;
+import com.mk.blueharvest.backendassignment.accounts.dtos.AccountDTO;
 import com.mk.blueharvest.backendassignment.accounts.entities.Account;
 import com.mk.blueharvest.backendassignment.accounts.repositories.AccountRepository;
 import com.mk.blueharvest.backendassignment.customers.dtos.CustomerDTO;
@@ -15,22 +15,22 @@ import java.util.List;
 
 @Service
 @Transactional
-public class DefaultAccountsService implements AccountsService {
+public class DefaultAccountService implements AccountService {
     private final AccountRepository accountRepository;
     private final AccountAdapter accountAdapter;
     private final CustomerService customerService;
 
     @Autowired
-    public DefaultAccountsService(AccountRepository accountRepository,
-                                  AccountAdapter accountAdapter,
-                                  CustomerService customerService) {
+    public DefaultAccountService(AccountRepository accountRepository,
+                                 AccountAdapter accountAdapter,
+                                 CustomerService customerService) {
         this.accountRepository = accountRepository;
         this.accountAdapter = accountAdapter;
         this.customerService = customerService;
     }
 
     @Override
-    public AccountsDTO addAccountToCustomer(CustomerDTO customerDTO, AccountsDTO accountDTO) {
+    public AccountDTO addAccountToCustomer(CustomerDTO customerDTO, AccountDTO accountDTO) {
 
         Account account = accountRepository.save(accountAdapter.getAccountsEntity(accountDTO));
         customerDTO.getAccounts().add(accountAdapter.getAccountsDTO(account));
@@ -39,8 +39,8 @@ public class DefaultAccountsService implements AccountsService {
     }
 
     @Override
-    public List<AccountsDTO> getAllAccountsForCustomer(CustomerDTO customerDTO) {
-        List<AccountsDTO> accounts = new ArrayList<>();
+    public List<AccountDTO> getAllAccountsForCustomer(CustomerDTO customerDTO) {
+        List<AccountDTO> accounts = new ArrayList<>();
         accountRepository.findAll().forEach(account -> {
             accounts.add(accountAdapter.getAccountsDTO(account));
         });
