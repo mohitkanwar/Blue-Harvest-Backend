@@ -5,7 +5,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -17,29 +16,30 @@ import java.util.Objects;
 @SpringBootTest
 public class CustomerTest {
 
-    private Customer customer;
-
     private static final String TEST_GIVEN_NAME = "Test Given Name";
     private static final String TEST_SURNAME = "Test Sur Name";
+    private Customer customer;
+
     @Before
-    public void setup(){
+    public void setup() {
         customer = new Customer();
     }
 
 
     @Test
-    public void customerCanHaveAGivenName(){
+    public void customerCanHaveAGivenName() {
         customer.setGivenName(TEST_GIVEN_NAME);
-        Assert.assertEquals(TEST_GIVEN_NAME,customer.getGivenName());
-    }
-    @Test
-    public void customerCanHaveASurname(){
-        customer.setSurname(TEST_SURNAME);
-        Assert.assertEquals(TEST_SURNAME,customer.getSurname());
+        Assert.assertEquals(TEST_GIVEN_NAME, customer.getGivenName());
     }
 
     @Test
-    public void testCustomerEqualityBasedOnId(){
+    public void customerCanHaveASurname() {
+        customer.setSurname(TEST_SURNAME);
+        Assert.assertEquals(TEST_SURNAME, customer.getSurname());
+    }
+
+    @Test
+    public void testCustomerEqualityBasedOnId() {
         final long ID = 10;
         Customer customer = new Customer();
         customer.setId(ID);
@@ -49,7 +49,7 @@ public class CustomerTest {
     }
 
     @Test
-    public void testCustomerHashcodeBasedOnId(){
+    public void testCustomerHashcodeBasedOnId() {
         final long ID = 10;
         Customer customer = new Customer();
         customer.setId(ID);
@@ -58,11 +58,11 @@ public class CustomerTest {
     }
 
     @Test
-    public void customerCanHaveAccounts(){
+    public void customerCanHaveAccounts() {
         Account account1 = new Account();
         List<Account> accounts = new ArrayList<>();
         accounts.add(account1);
         customer.setAccounts(accounts);
-        Assert.assertEquals(accounts,customer.getAccounts());
+        Assert.assertEquals(accounts, customer.getAccounts());
     }
 }

@@ -37,7 +37,7 @@ public class AccountsDTO {
     }
 
     public List<TransactionDTO> getTransactions() {
-        if(transactions==null){
+        if (transactions == null) {
             transactions = new ArrayList<>();
         }
         return transactions;

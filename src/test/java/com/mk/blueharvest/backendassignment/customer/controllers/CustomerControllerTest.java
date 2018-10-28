@@ -1,8 +1,6 @@
 package com.mk.blueharvest.backendassignment.customer.controllers;
 
-import com.mk.blueharvest.backendassignment.customer.controllers.CustomerController;
 import com.mk.blueharvest.backendassignment.customer.dto.CustomerDTO;
-import com.mk.blueharvest.backendassignment.customer.entities.Customer;
 import com.mk.blueharvest.backendassignment.customer.services.CustomerService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,15 +17,16 @@ public class CustomerControllerTest {
     private CustomerController customerController;
     @Autowired
     private CustomerService customerService;
+
     @Test
-    public void getAllCustomers(){
-        Customer customer = new Customer();
+    public void getAllCustomers() {
+        CustomerDTO customer = new CustomerDTO();
         customer.setGivenName("Mohit");
         customer.setSurname("Kanwar");
         customerService.save(customer);
         List<CustomerDTO> customers = customerController.getCustomersList();
         customers.forEach(customerDTO -> {
-            System.out.println(customerDTO.getGivenName() +" "+customerDTO.getSurname());
+            System.out.println(customerDTO.getGivenName() + " " + customerDTO.getSurname());
         });
     }
 }

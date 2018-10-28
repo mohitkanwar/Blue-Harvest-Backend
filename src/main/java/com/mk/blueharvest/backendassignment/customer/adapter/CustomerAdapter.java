@@ -2,6 +2,7 @@ package com.mk.blueharvest.backendassignment.customer.adapter;
 
 import com.mk.blueharvest.backendassignment.account.adapters.AccountAdapter;
 import com.mk.blueharvest.backendassignment.account.dto.AccountsDTO;
+import com.mk.blueharvest.backendassignment.account.entities.Account;
 import com.mk.blueharvest.backendassignment.customer.dto.CustomerDTO;
 import com.mk.blueharvest.backendassignment.customer.entities.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class CustomerAdapter {
     }
 
     public CustomerDTO getCustomerDTO(Customer customer) {
+        if (customer == null) {
+            return null;
+        }
         CustomerDTO dto = new CustomerDTO();
         dto.setCustomerId(customer.getId());
         dto.setGivenName(customer.getGivenName());
@@ -30,5 +34,21 @@ public class CustomerAdapter {
                 .collect(Collectors.toList());
         dto.setAccounts(accountsDTOS);
         return dto;
+    }
+
+    public Customer getCustomerEntity(CustomerDTO dto) {
+        if (dto == null) {
+            return null;
+        }
+        Customer entity = new Customer();
+        entity.setId(dto.getCustomerId());
+        entity.setGivenName(dto.getGivenName());
+        entity.setSurname(dto.getSurname());
+        List<Account> accountsEntityList = dto.getAccounts()
+                .stream()
+                .map(accountAdapter::getAccountsEntity)
+                .collect(Collectors.toList());
+        entity.setAccounts(accountsEntityList);
+        return entity;
     }
 }

@@ -1,15 +1,15 @@
 package com.mk.blueharvest.backendassignment.customer.services;
 
 
-import com.mk.blueharvest.backendassignment.customer.entities.Customer;
+import com.mk.blueharvest.backendassignment.customer.dto.CustomerDTO;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface CustomerService {
-    Customer save(Customer customer);
+    CustomerDTO save(CustomerDTO customer);
 
-    List<Customer> getAllCustomers();
+    List<CustomerDTO> getAllCustomers();
 
-    Optional<Customer> getCustomerById(long customerId);
+    Optional<CustomerDTO> getCustomerById(long customerId);
 }

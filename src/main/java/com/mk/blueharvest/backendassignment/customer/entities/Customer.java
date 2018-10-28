@@ -33,6 +33,7 @@ public class Customer {
     public long getId() {
         return id;
     }
+
     public void setId(long id) {
         this.id = id;
     }
@@ -49,6 +50,10 @@ public class Customer {
         return surname;
     }
 
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -62,12 +67,8 @@ public class Customer {
         return Objects.hash(getId());
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
     public List<Account> getAccounts() {
-        if(accounts==null){
+        if (accounts == null) {
             accounts = new ArrayList<>();
         }
         return accounts;

@@ -9,35 +9,36 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Objects;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class AccountTest {
 
+    private static final long ID = 10;
     private Account account;
 
-    private static final long ID =10;
-
     @Before
-    public void setUp(){
+    public void setUp() {
         account = new Account();
     }
+
     @Test
     public void accountCanHaveanId() {
         account.setId(ID);
-        assertEquals(ID,account.getId());
+        assertEquals(ID, account.getId());
     }
 
     @Test
     public void testAccountType() {
         account.setAccountType(AccountType.CURRENT);
-        assertEquals(AccountType.CURRENT,account.getAccountType());
+        assertEquals(AccountType.CURRENT, account.getAccountType());
     }
 
     @Test
     public void testBalance() {
         account.setBalance(200);
-        assertEquals(200,account.getBalance(),0);
+        assertEquals(200, account.getBalance(), 0);
     }
 
     @Test
@@ -46,7 +47,7 @@ public class AccountTest {
         account1.setId(200);
         Account account2 = new Account();
         account2.setId(200);
-        assertEquals(account1,account2);
+        assertEquals(account1, account2);
     }
 
     @Test

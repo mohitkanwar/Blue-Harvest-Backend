@@ -3,7 +3,6 @@ package com.mk.blueharvest.backendassignment.account.entities;
 import com.mk.blueharvest.backendassignment.account.util.AccountType;
 
 import javax.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -67,7 +66,7 @@ public class Account {
 
 
     public List<Transaction> getTransactions() {
-        if(transactions==null){
+        if (transactions == null) {
             transactions = new ArrayList<>();
         }
         return transactions;

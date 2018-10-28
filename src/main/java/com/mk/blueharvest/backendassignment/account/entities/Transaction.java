@@ -36,7 +36,6 @@ public class Transaction {
     }
 
 
-
     public Date getCreateDate() {
         return createDate;
     }

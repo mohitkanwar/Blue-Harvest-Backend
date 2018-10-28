@@ -1,7 +1,7 @@
 package com.mk.blueharvest.backendassignment.account.services;
 
-import com.mk.blueharvest.backendassignment.account.entities.Account;
+import com.mk.blueharvest.backendassignment.account.dto.AccountsDTO;
 
 public interface TransactionService {
-    void saveTransaction(Account account,  double amount);
+    void saveTransaction(AccountsDTO account, double amount);
 }

@@ -1,8 +1,8 @@
 package com.mk.blueharvest.backendassignment.customer.services;
 
-import com.mk.blueharvest.backendassignment.account.entities.Account;
+import com.mk.blueharvest.backendassignment.account.dto.AccountsDTO;
 import com.mk.blueharvest.backendassignment.account.util.AccountType;
-import com.mk.blueharvest.backendassignment.customer.entities.Customer;
+import com.mk.blueharvest.backendassignment.customer.dto.CustomerDTO;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,24 +20,20 @@ public class CustomerServiceIntegrationTest {
     private CustomerService customerService;
 
     @Test
-    public void shouldBeAbleToStoreCustomer(){
-        Customer customer = new Customer();
+    public void shouldBeAbleToStoreCustomer() {
+        CustomerDTO customer = new CustomerDTO();
         customer.setGivenName("CustName");
         customer.setSurname("surname");
-        Account account = new Account();
+        AccountsDTO account = new AccountsDTO();
         account.setAccountType(AccountType.CURRENT);
         account.setBalance(200);
-        List<Account> accounts = new ArrayList<>(1);
+        List<AccountsDTO> accounts = new ArrayList<>(1);
         accounts.add(account);
         customer.setAccounts(accounts);
-        customerService.save(customer);
-        final List<Customer> allCustomers = customerService.getAllCustomers();
-        Assert.assertTrue(allCustomers.contains(customer));
-        int index = allCustomers.indexOf(customer);
-        Customer customerFromDB = allCustomers.get(index);
-        Assert.assertNotEquals(0,customerFromDB.getId());
-        Assert.assertNotNull(customerFromDB.getAccounts());
-        Assert.assertEquals(1,customerFromDB.getAccounts().size());
-        Assert.assertNotEquals(0,customerFromDB.getAccounts().get(0).getId());
+        CustomerDTO customerDTOFromDB = customerService.save(customer);
+        Assert.assertNotEquals(0, customerDTOFromDB.getCustomerId());
+        Assert.assertNotNull(customerDTOFromDB.getAccounts());
+        Assert.assertEquals(1, customerDTOFromDB.getAccounts().size());
+        Assert.assertNotEquals(0, customerDTOFromDB.getAccounts().get(0).getId());
     }
 }

@@ -16,25 +16,25 @@ public class CustomerAccountsControllerTest {
     private CustomerAccountsController customerAccountsController;
 
     @Test
-    public void shouldHaveAPISignature(){
+    public void shouldHaveAPISignature() {
         long customerId = 1;
         double initialCredit = 200;
-        customerAccountsController.createCurrentAccount(customerId,initialCredit);
+        customerAccountsController.createCurrentAccount(customerId, initialCredit);
     }
 
     @Test
-    public void shouldReturnFalseIfUserDoesntExists(){
+    public void shouldReturnFalseIfUserDoesntExists() {
         long customerId = -20000L;
         double initialCredit = 200;
         assertEquals(StatusResponse.FAILURE.toString(),
-                customerAccountsController.createCurrentAccount(customerId,initialCredit));
+                customerAccountsController.createCurrentAccount(customerId, initialCredit));
     }
 
     @Test
-    public void shouldCreateAccountIfUserExists(){
+    public void shouldCreateAccountIfUserExists() {
         long customerId = 1;
         double initialCredit = 200;
         assertEquals(StatusResponse.SUCCESS.toString(),
-                customerAccountsController.createCurrentAccount(customerId,initialCredit));
+                customerAccountsController.createCurrentAccount(customerId, initialCredit));
     }
 }

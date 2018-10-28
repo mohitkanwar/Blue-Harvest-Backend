@@ -1,13 +1,14 @@
 package com.mk.blueharvest.backendassignment.account.services;
 
-import com.mk.blueharvest.backendassignment.account.entities.Account;
+import com.mk.blueharvest.backendassignment.account.dto.AccountsDTO;
+import com.mk.blueharvest.backendassignment.customer.dto.CustomerDTO;
 
 import java.util.List;
 
 public interface AccountsService {
 
 
-    Account save(Account account);
+    AccountsDTO addAccountToCustomer(CustomerDTO customerDTO, AccountsDTO account);
 
-    List<Account> getAllAccounts();
+    List<AccountsDTO> getAllAccountsForCustomer(CustomerDTO customerDTO);
 }

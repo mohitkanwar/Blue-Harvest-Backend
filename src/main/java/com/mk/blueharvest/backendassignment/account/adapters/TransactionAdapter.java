@@ -9,4 +9,12 @@ public class TransactionAdapter {
     public TransactionDTO getTransactionDTO(Transaction transaction) {
         return new TransactionDTO(transaction.getId(), transaction.getAmount(), transaction.getCreateDate());
     }
+
+    public Transaction getTransactionEntity(TransactionDTO transactionDTO) {
+        Transaction transaction = new Transaction();
+        transaction.setAmount(transactionDTO.getAmount());
+        transaction.setId(transactionDTO.getId());
+        transaction.setCreateDate(transactionDTO.getCreateDate());
+        return transaction;
+    }
 }
