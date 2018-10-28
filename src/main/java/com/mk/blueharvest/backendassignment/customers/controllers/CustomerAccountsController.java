@@ -26,16 +26,16 @@ public class CustomerAccountsController {
     public String createCurrentAccount(long customerId, double initialCredit) {
         StatusResponse statusResponse = StatusResponse.FAILURE;
         Optional<CustomerDTO> customer = customerService.getCustomerById(customerId);
-            if (customer.isPresent()) {
-                CustomerDTO customer1 = customer.get();
-                AccountDTO account = new AccountDTO();
-                account.setAccountType(AccountType.CURRENT);
-                account = accountService.addAccountToCustomer(customer1, account);
-                if (initialCredit != 0) {
-                    transactionService.saveTransaction(account, initialCredit);
-                }
-                statusResponse = StatusResponse.SUCCESS;
+        if (customer.isPresent()) {
+            CustomerDTO customer1 = customer.get();
+            AccountDTO account = new AccountDTO();
+            account.setAccountType(AccountType.CURRENT);
+            account = accountService.addAccountToCustomer(customer1, account);
+            if (initialCredit != 0) {
+                transactionService.saveTransaction(account, initialCredit);
             }
+            statusResponse = StatusResponse.SUCCESS;
+        }
         return statusResponse.toString();
     }
 }

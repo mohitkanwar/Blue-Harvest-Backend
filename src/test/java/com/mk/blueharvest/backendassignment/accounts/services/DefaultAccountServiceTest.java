@@ -13,11 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.validation.constraints.AssertTrue;
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
@@ -25,11 +21,11 @@ import static org.mockito.Mockito.when;
 public class DefaultAccountServiceTest {
 
     @MockBean
-    private  AccountRepository accountRepository;
+    private AccountRepository accountRepository;
     @MockBean
-    private  AccountAdapter accountAdapter;
+    private AccountAdapter accountAdapter;
     @MockBean
-    private  CustomerService customerService;
+    private CustomerService customerService;
 
     @Autowired
     private AccountService accountService;
@@ -47,8 +43,8 @@ public class DefaultAccountServiceTest {
         when(accountRepository.save(mockEntity)).thenReturn(accountFromDB);
         when(customerService.save(customerDTO)).thenReturn(customerDTO);
         when(accountAdapter.getAccountsDTO(accountFromDB)).thenReturn(adaptedAccountDTO);
-        AccountDTO accountDTOFromDB = accountService.addAccountToCustomer(customerDTO,accountDTO);
-        assertEquals(20,accountDTOFromDB.getId());
+        AccountDTO accountDTOFromDB = accountService.addAccountToCustomer(customerDTO, accountDTO);
+        assertEquals(20, accountDTOFromDB.getId());
     }
 
 

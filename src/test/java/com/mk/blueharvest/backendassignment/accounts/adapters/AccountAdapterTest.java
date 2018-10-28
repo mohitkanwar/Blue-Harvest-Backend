@@ -47,7 +47,7 @@ public class AccountAdapterTest {
     }
 
     @Test
-    public void testNullInputs(){
+    public void testNullInputs() {
         assertNull(accountAdapter.getAccountsDTO(null));
         assertNull(accountAdapter.getAccountsEntity(null));
     }

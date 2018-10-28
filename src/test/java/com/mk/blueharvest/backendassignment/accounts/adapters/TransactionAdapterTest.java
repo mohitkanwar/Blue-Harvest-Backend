@@ -32,12 +32,13 @@ public class TransactionAdapterTest {
         assertEquals(amount, dto.getAmount(), 0);
         assertEquals(createDate, dto.getCreateDate());
     }
+
     @Test
     public void shouldReturnCorrectEntity() {
         long id = 2000;
         double amount = 20.05;
         Date createDate = new Date();
-        TransactionDTO dto = new TransactionDTO(id,amount,createDate);
+        TransactionDTO dto = new TransactionDTO(id, amount, createDate);
         Transaction entity = adapter.getTransactionEntity(dto);
         assertEquals(id, entity.getId());
         assertEquals(amount, entity.getAmount(), 0);

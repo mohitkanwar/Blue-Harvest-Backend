@@ -17,19 +17,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class DefaultTransactionServiceTest {
     @MockBean
-    private  TransactionRepository transactionRepository;
+    private TransactionRepository transactionRepository;
     @MockBean
-    private  AccountRepository accountRepository;
+    private AccountRepository accountRepository;
     @MockBean
-    private  AccountAdapter accountAdapter;
+    private AccountAdapter accountAdapter;
 
     @Test
     public void saveTransaction() {

@@ -15,7 +15,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
@@ -40,12 +41,12 @@ public class CustomerAdapterTest {
         AccountDTO accountDTO = new AccountDTO();
         when(accountAdapter.getAccountsDTO(account)).thenReturn(accountDTO);
         CustomerDTO dto = customerAdapter.getCustomerDTO(entity);
-        assertEquals(1,dto.getCustomerId());
-        assertEquals("GivenName",dto.getGivenName());
-        assertEquals("surname",dto.getSurname());
+        assertEquals(1, dto.getCustomerId());
+        assertEquals("GivenName", dto.getGivenName());
+        assertEquals("surname", dto.getSurname());
         List<AccountDTO> accountDTOS = new ArrayList<>();
         accountDTOS.add(accountDTO);
-        assertEquals(accountDTOS,dto.getAccounts());
+        assertEquals(accountDTOS, dto.getAccounts());
     }
 
     @Test
@@ -60,18 +61,18 @@ public class CustomerAdapterTest {
         dto.setAccounts(accountDTOs);
         Account account = new Account();
         when(accountAdapter.getAccountsEntity(accountDTO)).thenReturn(account);
-       Customer adaptedCustomer =  customerAdapter.getCustomerEntity(dto);
-       List<Account> accountList = new ArrayList<>();
+        Customer adaptedCustomer = customerAdapter.getCustomerEntity(dto);
+        List<Account> accountList = new ArrayList<>();
         accountList.add(account);
-       assertEquals(10,adaptedCustomer.getId());
-       assertEquals("GN",adaptedCustomer.getGivenName());
-       assertEquals("SN",adaptedCustomer.getSurname());
-       assertEquals(accountList,adaptedCustomer.getAccounts());
+        assertEquals(10, adaptedCustomer.getId());
+        assertEquals("GN", adaptedCustomer.getGivenName());
+        assertEquals("SN", adaptedCustomer.getSurname());
+        assertEquals(accountList, adaptedCustomer.getAccounts());
     }
 
     @Test
     public void testNullInputs() {
-       assertNull(customerAdapter.getCustomerDTO(null));
-       assertNull(customerAdapter.getCustomerEntity(null));
+        assertNull(customerAdapter.getCustomerDTO(null));
+        assertNull(customerAdapter.getCustomerEntity(null));
     }
 }

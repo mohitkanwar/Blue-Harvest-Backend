@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
@@ -24,9 +24,9 @@ public class CustomerSeviceTest {
     @Autowired
     private CustomerService customerService;
     @MockBean
-    private  CustomerRepository customerRepository;
+    private CustomerRepository customerRepository;
     @MockBean
-    private  CustomerAdapter customerAdapter;
+    private CustomerAdapter customerAdapter;
 
     @Test
     public void save() {
@@ -35,8 +35,8 @@ public class CustomerSeviceTest {
         when(customerAdapter.getCustomerEntity(customerDTO)).thenReturn(customer);
         when(customerAdapter.getCustomerDTO(customer)).thenReturn(customerDTO);
         when(customerRepository.save(customer)).thenReturn(customer);
-       CustomerDTO customerDTOFromDb = customerService.save(customerDTO);
-       assertEquals(customerDTOFromDb,customerDTO);
+        CustomerDTO customerDTOFromDb = customerService.save(customerDTO);
+        assertEquals(customerDTOFromDb, customerDTO);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class CustomerSeviceTest {
         when(customerRepository.findAll()).thenReturn(customers);
         when(customerAdapter.getCustomerDTO(customer)).thenReturn(customerDTO);
         List<CustomerDTO> customerDTOS = customerService.getAllCustomers();
-        assertEquals(1,customerDTOS.size());
+        assertEquals(1, customerDTOS.size());
     }
 
     @Test
@@ -59,9 +59,10 @@ public class CustomerSeviceTest {
         Optional<Customer> optional = Optional.of(customer);
         when(customerAdapter.getCustomerDTO(customer)).thenReturn(customerDTO);
         when(customerRepository.findById(customerId)).thenReturn(optional);
-        Optional<CustomerDTO> output =  customerService.getCustomerById(customerId);
-        assertEquals(Optional.of(customerDTO),output);
+        Optional<CustomerDTO> output = customerService.getCustomerById(customerId);
+        assertEquals(Optional.of(customerDTO), output);
     }
+
     @Test
     public void testNoCustomerFoundById() {
         long customerId = 10;
@@ -70,7 +71,7 @@ public class CustomerSeviceTest {
 
         when(customerAdapter.getCustomerDTO(customer)).thenReturn(customerDTO);
         when(customerRepository.findById(customerId)).thenReturn(Optional.ofNullable(null));
-        Optional<CustomerDTO> output =  customerService.getCustomerById(customerId);
-        assertEquals(Optional.ofNullable(null),output);
+        Optional<CustomerDTO> output = customerService.getCustomerById(customerId);
+        assertEquals(Optional.ofNullable(null), output);
     }
 }
