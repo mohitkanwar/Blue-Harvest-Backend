@@ -1,6 +1,7 @@
 package com.mk.blueharvest.backendassignment.customer.controllers;
 
 import com.mk.blueharvest.backendassignment.account.dto.AccountsDTO;
+import com.mk.blueharvest.backendassignment.account.dto.TransactionDTO;
 import com.mk.blueharvest.backendassignment.customer.dto.CustomerDTO;
 import com.mk.blueharvest.backendassignment.customer.entities.Customer;
 import com.mk.blueharvest.backendassignment.customer.services.CustomerService;
@@ -31,6 +32,11 @@ public class CustomerController {
                 accountsDTO.setAccountType(account.getAccountType());
                 accountsDTO.setBalance(account.getBalance());
                 accountsDTO.setId(account.getId());
+                List<TransactionDTO> transactionDTOList = new ArrayList<>();
+                account.getTransactions().forEach(transaction -> {
+                    transactionDTOList.add(new TransactionDTO(transaction.getId(),transaction.getAmount(),transaction.getCreateDate()));
+                });
+                accountsDTO.setTransactions(transactionDTOList);
                 accountsDTOS.add(accountsDTO);
             });
             dto.setAccounts(accountsDTOS);
