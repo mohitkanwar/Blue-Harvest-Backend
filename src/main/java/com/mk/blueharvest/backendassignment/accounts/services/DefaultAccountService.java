@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
+/**
+ * Default implementation of Account Service
+ */
 @Service
 @Transactional
 public class DefaultAccountService implements AccountService {
@@ -27,6 +30,12 @@ public class DefaultAccountService implements AccountService {
         this.customerService = customerService;
     }
 
+    /**
+     * Adds an account to the Customer
+     * @param customerDTO
+     * @param accountDTO
+     * @return
+     */
     @Override
     public AccountDTO addAccountToCustomer(CustomerDTO customerDTO, AccountDTO accountDTO) {
 

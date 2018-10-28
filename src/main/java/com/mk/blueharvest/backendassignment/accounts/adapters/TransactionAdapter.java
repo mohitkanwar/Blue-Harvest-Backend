@@ -4,10 +4,18 @@ import com.mk.blueharvest.backendassignment.accounts.dtos.TransactionDTO;
 import com.mk.blueharvest.backendassignment.accounts.entities.Transaction;
 import org.springframework.stereotype.Component;
 
+/**
+ * Convverts Transaction Entity to and from DTO
+ */
 @Component
 public class TransactionAdapter {
-    TransactionDTO getTransactionDTO(Transaction transaction) {
-        return new TransactionDTO(transaction.getId(), transaction.getAmount(), transaction.getCreateDate());
+    /**
+     * Converts Transaction Entity to Transaction DTO.
+     * @param transactionEntity : Transaction
+     * @return TransactionDTO
+     */
+    TransactionDTO getTransactionDTO(Transaction transactionEntity) {
+        return new TransactionDTO(transactionEntity.getId(), transactionEntity.getAmount(), transactionEntity.getCreateDate());
     }
 
     Transaction getTransactionEntity(TransactionDTO transactionDTO) {

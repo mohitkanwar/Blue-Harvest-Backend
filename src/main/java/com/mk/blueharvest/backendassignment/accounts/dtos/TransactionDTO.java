@@ -2,6 +2,9 @@ package com.mk.blueharvest.backendassignment.accounts.dtos;
 
 import java.util.Date;
 
+/**
+ * Representation of Transaction as seen by Controllers and clients
+ */
 public final class TransactionDTO {
     private final long id;
     private final double amount;

@@ -5,6 +5,9 @@ import com.mk.blueharvest.backendassignment.accounts.utils.AccountType;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Representation of Account as viewed in Controllers and outside world
+ */
 
 public class AccountDTO {
     private long id;

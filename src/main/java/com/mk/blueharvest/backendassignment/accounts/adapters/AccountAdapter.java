@@ -10,6 +10,9 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Account Adapter converts Account entity to and from Account DTO
+ */
 @Component
 public class AccountAdapter {
     private final TransactionAdapter transactionAdapter;
@@ -19,37 +22,51 @@ public class AccountAdapter {
         this.transactionAdapter = transactionAdapter;
     }
 
-    public AccountDTO getAccountsDTO(Account account) {
-        if (account == null) {
+    /**
+     * Convert AccountEntity to AccountDTO
+     * It invokes transaction adapter
+     * internally to convert TransactionEntity List to Transaction DTO List
+     * if null input is provided, it returns a null
+     * @param entity :Account
+     * @return accountDTO
+     */
+    public AccountDTO getAccountsDTO(Account entity) {
+        if (entity == null) {
             return null;
         }
         AccountDTO accountDTO = new AccountDTO();
-        accountDTO.setAccountType(account.getAccountType());
-        accountDTO.setBalance(account.getBalance());
-        accountDTO.setId(account.getId());
+        accountDTO.setAccountType(entity.getAccountType());
+        accountDTO.setBalance(entity.getBalance());
+        accountDTO.setId(entity.getId());
         List<TransactionDTO> transactionDTOList =
-                account.getTransactions().stream().map
+                entity.getTransactions().stream().map
                         (transactionAdapter::getTransactionDTO)
                         .collect(Collectors.toList());
         accountDTO.setTransactions(transactionDTOList);
         return accountDTO;
     }
 
+    /**
+     * Converts Account DTO to Entity. Also converts the transaction DTO to entity if present
+     * Returns null if null input is provided
+     * @param accountDTO : AccountDTO
+     * @return Account
+     */
     public Account getAccountsEntity(AccountDTO accountDTO) {
         if (accountDTO == null) {
             return null;
         }
-        Account account = new Account();
-        account.setAccountType(accountDTO.getAccountType());
-        account.setBalance(accountDTO.getBalance());
+        Account accountEntity = new Account();
+        accountEntity.setAccountType(accountDTO.getAccountType());
+        accountEntity.setBalance(accountDTO.getBalance());
         if (accountDTO.getId() != 0) {
-            account.setId(accountDTO.getId());
+            accountEntity.setId(accountDTO.getId());
         }
         List<Transaction> transactionList =
                 accountDTO.getTransactions().stream().map
                         (transactionAdapter::getTransactionEntity)
                         .collect(Collectors.toList());
-        account.setTransactions(transactionList);
-        return account;
+        accountEntity.setTransactions(transactionList);
+        return accountEntity;
     }
 }

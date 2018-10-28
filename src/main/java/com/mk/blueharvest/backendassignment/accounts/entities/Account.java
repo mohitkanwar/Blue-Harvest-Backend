@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Representation of Account, The Domain Model of the system.
+ */
 @Entity
 @Table(name = "ACCOUNTS")
 public class Account {
