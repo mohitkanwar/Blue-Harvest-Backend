@@ -5,16 +5,19 @@ import com.mk.blueharvest.backendassignment.account.repositories.AccountReposito
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional
 public class DefaultAccountsService implements AccountsService {
     @Autowired
     private AccountRepository accountRepository;
     @Override
-    public void save(Account account) {
-        accountRepository.save(account);
+    public Account save(Account account) {
+        return accountRepository.save(account);
     }
 
     @Override

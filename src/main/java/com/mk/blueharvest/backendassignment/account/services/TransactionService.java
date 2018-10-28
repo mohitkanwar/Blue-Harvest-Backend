@@ -2,12 +2,6 @@ package com.mk.blueharvest.backendassignment.account.services;
 
 import com.mk.blueharvest.backendassignment.account.entities.Account;
 
-import java.util.List;
-
-public interface AccountsService {
-
-
-    Account save(Account account);
-
-    List<Account> getAllAccounts();
+public interface TransactionService {
+    void saveTransaction(Account account,  double amount);
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DefaultCustomerSevice implements CustomerService {
@@ -14,8 +15,8 @@ public class DefaultCustomerSevice implements CustomerService {
     private CustomerRepository customerRepository;
 
     @Override
-    public void save(Customer customer) {
-        customerRepository.save(customer);
+    public Customer save(Customer customer) {
+        return customerRepository.save(customer);
     }
 
     @Override
@@ -23,5 +24,12 @@ public class DefaultCustomerSevice implements CustomerService {
         List<Customer> customers = new ArrayList<>();
         customerRepository.findAll().forEach(customer -> {customers.add(customer);});
         return customers;
+    }
+
+    @Override
+    public Optional<Customer> getCustomerById(long customerId) {
+        Optional<Customer> customer = customerRepository.findById(customerId);
+        System.out.println("Status for customer with id :"+customerId+" = "+customer.isPresent());
+        return customer;
     }
 }

@@ -3,6 +3,9 @@ package com.mk.blueharvest.backendassignment.account.entities;
 import com.mk.blueharvest.backendassignment.account.util.AccountType;
 
 import javax.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -10,12 +13,20 @@ import java.util.Objects;
 public class Account {
     @Id
     @Column(name = "ID")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "ACCOUNTTYPE")
     private AccountType accountType;
     @Column(name = "BALANCE")
     private double balance;
+
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "ACCOUNT_TRANSACTIONS",
+            joinColumns = {@JoinColumn(name = "ACCOUNT_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "TRANSACTION_ID")}
+    )
+    private List<Transaction> transactions;
 
     public long getId() {
         return id;
@@ -52,5 +63,17 @@ public class Account {
     @Override
     public int hashCode() {
         return Objects.hash(getId());
+    }
+
+
+    public List<Transaction> getTransactions() {
+        if(transactions==null){
+            transactions = new ArrayList<>();
+        }
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
     }
 }
