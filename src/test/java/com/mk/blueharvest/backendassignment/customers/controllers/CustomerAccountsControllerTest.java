@@ -26,7 +26,7 @@ public class CustomerAccountsControllerTest {
     public void shouldReturnFalseIfUserDoesntExists() {
         long customerId = -20000L;
         double initialCredit = 200;
-        assertEquals(StatusResponse.FAILURE.toString(),
+        assertEquals(StatusResponse.FAILURE,
                 customerAccountsController.createCurrentAccount(customerId, initialCredit));
     }
 
@@ -34,7 +34,7 @@ public class CustomerAccountsControllerTest {
     public void shouldCreateAccountIfUserExists() {
         long customerId = 1;
         double initialCredit = 200;
-        assertEquals(StatusResponse.SUCCESS.toString(),
+        assertEquals(StatusResponse.SUCCESS,
                 customerAccountsController.createCurrentAccount(customerId, initialCredit));
     }
 }

@@ -5,6 +5,8 @@ import com.mk.blueharvest.backendassignment.customers.dtos.CustomerDTO;
 import com.mk.blueharvest.backendassignment.customers.entities.Customer;
 import com.mk.blueharvest.backendassignment.customers.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,9 +30,11 @@ public class DefaultCustomerSevice implements CustomerService {
     }
 
     @Override
-    public List<CustomerDTO> getAllCustomers() {
+    public List<CustomerDTO> getAllCustomers(int pageNumber, int pageSize) {
         List<CustomerDTO> customers = new ArrayList<>();
-        customerRepository.findAll().forEach(customer -> {
+        int firstRecord = pageNumber*pageSize;
+        int maxRecord = (pageNumber+1)*pageSize -1;
+        customerRepository.findAll(PageRequest.of(firstRecord,maxRecord, Sort.by("id"))).forEach(customer -> {
             customers.add(customerAdapter.getCustomerDTO(customer));
         });
         return customers;

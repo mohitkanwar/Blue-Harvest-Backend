@@ -23,7 +23,7 @@ public class CustomerAccountsController {
     private TransactionService transactionService;
 
     @PostMapping("/current")
-    public String createCurrentAccount(long customerId, double initialCredit) {
+    public StatusResponse createCurrentAccount(long customerId, double initialCredit) {
         StatusResponse statusResponse = StatusResponse.FAILURE;
         Optional<CustomerDTO> customer = customerService.getCustomerById(customerId);
         if (customer.isPresent()) {
@@ -36,6 +36,6 @@ public class CustomerAccountsController {
             }
             statusResponse = StatusResponse.SUCCESS;
         }
-        return statusResponse.toString();
+        return statusResponse;
     }
 }
