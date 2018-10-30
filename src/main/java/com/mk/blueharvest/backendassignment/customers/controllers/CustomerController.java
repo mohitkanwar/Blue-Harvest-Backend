@@ -9,10 +9,12 @@ import com.mk.blueharvest.backendassignment.customers.utils.PaginatedListRespons
 import com.mk.blueharvest.backendassignment.customers.utils.StatusResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/customer")
+@RestController
+@RequestMapping("/customer")
 public class CustomerController {
 
     private final CustomerService customerService;
