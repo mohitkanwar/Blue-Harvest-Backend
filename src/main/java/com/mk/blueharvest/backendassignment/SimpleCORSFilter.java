@@ -1,6 +1,8 @@
 package com.mk.blueharvest.backendassignment;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -27,8 +29,12 @@ public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
 
     HttpServletRequest request = (HttpServletRequest) req;
     HttpServletResponse response = (HttpServletResponse) res;
-
-    response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+    List<String> allowedOrigins = new ArrayList<>();
+    allowedOrigins.add("https://mohitkanwar.github.io");
+    allowedOrigins.add("http://localhost:4200");
+    String originHeader = allowedOrigins.contains(request.getHeader("origin"))?request.getHeader("origin"):"none";
+    https://mohitkanwar.github.io
+    response.setHeader("Access-Control-Allow-Origin", originHeader);
     response.setHeader("Access-Control-Allow-Credentials", "true");
     response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
     response.setHeader("Access-Control-Max-Age", "3600");
