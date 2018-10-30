@@ -45,9 +45,9 @@ public class CustomerAccountsController {
         }
         else{
             ErrorResponse errorResponse = new ErrorResponse();
-            // Although a potentiol security bug
             errorResponse.setErrorCode(CustomerErrorCodes.CUSTOMER_NOT_FOUND.toString());
             errorResponse.setAdditionalInfo("The customer with ID ["+requestBody.getCustomerId()+"] was not found!");
+            response.setError(errorResponse);
         }
         return response;
     }
