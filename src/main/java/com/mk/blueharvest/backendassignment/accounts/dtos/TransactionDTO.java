@@ -1,5 +1,7 @@
 package com.mk.blueharvest.backendassignment.accounts.dtos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 /**
@@ -8,6 +10,7 @@ import java.util.Date;
 public final class TransactionDTO {
     private final long id;
     private final double amount;
+    @JsonFormat(pattern="dd-MMM-yyyy hh:mm:ss")
     private final Date createDate;
 
     public TransactionDTO(long id, double amount, Date createDate) {

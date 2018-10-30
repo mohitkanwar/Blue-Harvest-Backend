@@ -5,10 +5,14 @@ import com.mk.blueharvest.backendassignment.accounts.services.AccountService;
 import com.mk.blueharvest.backendassignment.accounts.services.TransactionService;
 import com.mk.blueharvest.backendassignment.accounts.utils.AccountType;
 import com.mk.blueharvest.backendassignment.customers.dtos.CustomerDTO;
+import com.mk.blueharvest.backendassignment.customers.errors.CustomerErrorCodes;
 import com.mk.blueharvest.backendassignment.customers.services.CustomerService;
+import com.mk.blueharvest.backendassignment.customers.utils.ErrorResponse;
+import com.mk.blueharvest.backendassignment.customers.utils.SimpleResponse;
 import com.mk.blueharvest.backendassignment.customers.utils.StatusResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
@@ -23,19 +27,26 @@ public class CustomerAccountsController {
     private TransactionService transactionService;
 
     @PostMapping("/current")
-    public StatusResponse createCurrentAccount(long customerId, double initialCredit) {
-        StatusResponse statusResponse = StatusResponse.FAILURE;
-        Optional<CustomerDTO> customer = customerService.getCustomerById(customerId);
+    public SimpleResponse createCurrentAccount(@RequestBody CreateAccountRequest requestBody) {
+        SimpleResponse response = new SimpleResponse();
+        response.setStatus(StatusResponse.FAILURE);
+        Optional<CustomerDTO> customer = customerService.getCustomerById(requestBody.getCustomerId());
         if (customer.isPresent()) {
             CustomerDTO customer1 = customer.get();
             AccountDTO account = new AccountDTO();
             account.setAccountType(AccountType.CURRENT);
             account = accountService.addAccountToCustomer(customer1, account);
-            if (initialCredit != 0) {
-                transactionService.saveTransaction(account, initialCredit);
+            if (requestBody.getInitialCredit() != 0) {
+                transactionService.saveTransaction(account, requestBody.getInitialCredit());
             }
-            statusResponse = StatusResponse.SUCCESS;
+            response.setStatus(StatusResponse.SUCCESS);
         }
-        return statusResponse;
+        else{
+            ErrorResponse errorResponse = new ErrorResponse();
+            // Although a potentiol security bug
+            errorResponse.setErrorCode(CustomerErrorCodes.CUSTOMER_NOT_FOUND.toString());
+            errorResponse.setAdditionalInfo("The customer with ID ["+requestBody.getCustomerId()+"] was not found!");
+        }
+        return response;
     }
 }
