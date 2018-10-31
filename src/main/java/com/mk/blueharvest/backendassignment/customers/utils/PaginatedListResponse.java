@@ -7,7 +7,7 @@ import java.util.List;
 
 public class PaginatedListResponse<T> {
     private List<T> dataList;
-    private int totalCount;
+    private long totalCount;
     private StatusResponse status;
     private ErrorResponse error;
     private int pageNumber;
@@ -35,7 +35,7 @@ public class PaginatedListResponse<T> {
         return dataList;
     }
 
-    public int getTotalCount() {
+    public long getTotalCount() {
         return totalCount;
     }
 
@@ -59,7 +59,7 @@ public class PaginatedListResponse<T> {
         this.dataList =  dataList;
     }
 
-    private void setTotalCount(int totalCount) {
+    public void setTotalCount(long totalCount) {
         this.totalCount = totalCount;
     }
 }

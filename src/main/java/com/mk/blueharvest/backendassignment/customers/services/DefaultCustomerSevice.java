@@ -32,12 +32,15 @@ public class DefaultCustomerSevice implements CustomerService {
     @Override
     public List<CustomerDTO> getAllCustomers(int pageNumber, int pageSize) {
         List<CustomerDTO> customers = new ArrayList<>();
-        int firstRecord = pageNumber*pageSize;
-        int maxRecord = (pageNumber+1)*pageSize -1;
-        customerRepository.findAll(PageRequest.of(firstRecord,maxRecord, Sort.by("id"))).forEach(customer -> {
+        customerRepository.findAll(PageRequest.of(pageNumber,pageSize, Sort.by("id"))).forEach(customer -> {
             customers.add(customerAdapter.getCustomerDTO(customer));
         });
         return customers;
+    }
+
+    @Override
+    public long getCustomersCount() {
+        return customerRepository.count();
     }
 
     @Override

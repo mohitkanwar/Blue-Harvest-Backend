@@ -12,4 +12,6 @@ public interface CustomerService {
     Optional<CustomerDTO> getCustomerById(long customerId);
 
     List<CustomerDTO> getAllCustomers(int pagenumber, int pagesize);
+
+    long getCustomersCount();
 }

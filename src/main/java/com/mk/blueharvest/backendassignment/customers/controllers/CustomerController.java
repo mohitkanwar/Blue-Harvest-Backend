@@ -45,6 +45,7 @@ public class CustomerController {
         }
         else{
             response.setDataList( customerService.getAllCustomers(pagenumber,pagesize));
+            response.setTotalCount(customerService.getCustomersCount());
             response.setStatus(StatusResponse.SUCCESS);
         }
 
