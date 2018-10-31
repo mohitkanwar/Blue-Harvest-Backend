@@ -33,7 +33,6 @@ public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
     allowedOrigins.add("https://mohitkanwar.github.io");
     allowedOrigins.add("http://localhost:4200");
     String originHeader = allowedOrigins.contains(request.getHeader("origin"))?request.getHeader("origin"):"none";
-    https://mohitkanwar.github.io
     response.setHeader("Access-Control-Allow-Origin", originHeader);
     response.setHeader("Access-Control-Allow-Credentials", "true");
     response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
