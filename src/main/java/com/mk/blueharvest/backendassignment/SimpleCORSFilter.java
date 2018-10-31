@@ -32,12 +32,15 @@ public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
     List<String> allowedOrigins = new ArrayList<>();
     allowedOrigins.add("https://mohitkanwar.github.io");
     allowedOrigins.add("http://localhost:4200");
-    String originHeader = allowedOrigins.contains(request.getHeader("origin"))?request.getHeader("origin"):"none";
-    response.setHeader("Access-Control-Allow-Origin", originHeader);
-    response.setHeader("Access-Control-Allow-Credentials", "true");
-    response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-    response.setHeader("Access-Control-Max-Age", "3600");
-    response.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");
+    if(allowedOrigins.contains(request.getHeader("origin"))){
+        response.setHeader("Access-Control-Allow-Origin", request.getHeader("origin"));
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");
+    }
+
+
 
     chain.doFilter(req, res);
 }
